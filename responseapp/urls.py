@@ -10,5 +10,5 @@ urlpatterns = [
  url('response/', responseapp_views.responseform),
  url('thankyou/', responseapp_views.responseform),
 
-path('', admin.site.urls),
+url('', admin.site.urls),
 ]
