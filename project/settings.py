@@ -29,15 +29,10 @@ SECRET_KEY = os.getenv(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ["http://datatest-datatest.1d35.starter-us-east-1.openshiftapps.com/", "0.0.0.0", "localhost", "127.0.0.1", os.environ.get('OPENSHIFT_DNS', '*')]
-ALLOWED_HOSTS = [
-    gethostname(), # For internal OpenShift load balancer security purposes.
-    os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
-    #'example.com', # First DNS alias (set up in the app)
-    #'www.example.com', # Second DNS alias (set up in the app)
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
