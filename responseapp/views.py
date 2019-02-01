@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common import action_chains
 from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
 import time
 import os
 
@@ -14,7 +15,7 @@ baseUrl1 = "https://zerodha.com/open-account?c=ZMPTJT"
 WINDOW_SIZE = "1920,1080"
 
 chrome_options = Options()  
-# chrome_options.add_argument("--headless")  
+chrome_options.add_argument("--headless")  
 chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
 
 
@@ -39,15 +40,16 @@ def responseform(request):
 
             # for MAC
             try:
-                CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+                # CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
                 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
                 DRIVER_BIN = os.path.join(PROJECT_ROOT, "chromedriver")
-                chrome_options.binary_location = CHROME_PATH
-                driver = webdriver.Chrome(executable_path = DRIVER_BIN, chrome_options = chrome_options)
+                # chrome_options.binary_location = CHROME_PATH
+                # driver = webdriver.Chrome(executable_path = DRIVER_BIN, chrome_options = chrome_options)
+                driver=webdriver.Chrome(executable_path = DRIVER_BIN, chrome_options = chrome_options)
 
             # for windows
             except:
-                print('error in mac')
+                print('************************** error ****************************')
                 # CHROME_PATH = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
                 # chrome_options.binary_location = CHROME_PATH
                 # dir_path = os.getcwd() + '\chromedriver.exe'
