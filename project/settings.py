@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from socket import gethostname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,8 +31,13 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['datatest-datatest.1d35.starter-us-east-1.openshiftapps.com', '0.0.0.0', '127.0.0.1']
-
+# ALLOWED_HOSTS = ["http://datatest-datatest.1d35.starter-us-east-1.openshiftapps.com/", "0.0.0.0", "localhost", "127.0.0.1", os.environ.get('OPENSHIFT_DNS', '*')]
+ALLOWED_HOSTS = [
+    gethostname(), # For internal OpenShift load balancer security purposes.
+    os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
+    #'example.com', # First DNS alias (set up in the app)
+    #'www.example.com', # Second DNS alias (set up in the app)
+]
 
 # Application definition
 
